@@ -1,7 +1,11 @@
 import json
 import yaml
+from yaml import CBaseLoader
+from yaml import CLoader
 from yaml import CSafeLoader
+from yaml import BaseLoader
 from yaml import SafeLoader
+from yaml import UnsafeLoader
 
 
 def test_yaml_load():
@@ -20,8 +24,14 @@ def test_json_load():
     j = json.load("{}")
 
 yaml.load("{}", Loader=yaml.Loader)
+yaml.load("{}", Loader=yaml.CLoader)
+yaml.load("{}", Loader=yaml.UnsafeLoader)
 
 # no issue should be found
+yaml.load("{}", Loader=yaml.BaseLoader)
+yaml.load("{}", Loader=yaml.CBaseLoader)
+yaml.load("{}", BaseLoader)
+yaml.load("{}", CBaseLoader)
 yaml.load("{}", SafeLoader)
 yaml.load("{}", yaml.SafeLoader)
 yaml.load("{}", CSafeLoader)
